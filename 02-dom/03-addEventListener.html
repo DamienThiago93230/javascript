@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>addEventListerner</title>
+    <style>
+        div { width: 50px; height: 50px; position: relative;}
+        .rose {background: pink;}
+    </style>
+</head>
+<body>
+    <button id="bouton">Déplacer le carré</button>
+    <div class="rose"></div>
+
+    <script>
+        // La méthode addEventListerner :
+        // En cliquant sur le bouton, le carré se déplace ET change de couleur.
+        // Problématique : quand on met plusieurs évévnements identique sur le même bouton, dans la syntaxe vu jusqu'ici seul le dernier événement est pris en compte...
+        var carre = document.querySelector('.rose');
+        var bouton = document.querySelector('#bouton');
+        var leftPosition = 0; // Valeur de la position left du carré
+
+        function deplacement (){
+            leftPosition += 10; // Augmente la valeur de la variable de +10
+            carre.style.left = leftPosition + 'px';
+        }
+
+        function couleur (){
+            carre.style.backgroundColor = "yellow"; // Les propriétés CSS qui comporte un tiret : on leur enléve et oon met une majuscule.
+        }
+
+        // Seul le dernier événement est pris en compte avec cette méthode :
+        //bouton.onclick = deplacement; // On écrit la fonction sans sa paire de () sinon elle est appllée et exécutée immédiatement sans attendre l'ordre du click dont elle dépend.
+        //bouton.onclick = couleur; // On constate que le carré devient jaune met ne se déplace plus, car c'est le dernier événement  qui, prévaut avec cette syntaxe onclick.
+
+        // Pour s'en sortir on utilise addEventListener :
+        bouton.addEventListener('click', deplacement);
+        bouton.addEventListener('click', couleur); // L'événement click s'écrit sans le "on", et la fonction couleur sans sa paire de () pour ne pas qu'elle s'exécute immédiatement. La fonction couleur est appellée une foncton CALLBACK car elle est passée en argument (= en paramétre) d'une autre fonction, ici addEventListener(). En effet, elle attend l'ordre de cette dernière pour s'exécuter.
+
+        // addEventListener() veut dire littéralement "ajouter un écouteur d'événements". Cela signifie que l'on ajoute un événement à un élément (ici au boton).
+
+        // Cette méthode est utile aussi si vous utilsez des pluggins ou des bibliothéques JS qui font appel à des événement identique aux votre.
+
+        //---------------
+        // On peut aussi écrire une fonction anonyme directement dans addEventListener :
+        bouton.addEventListener( 'click', function(){
+            carre.style.border = '1px solid red';
+        });
+
+        
+        
+        
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
