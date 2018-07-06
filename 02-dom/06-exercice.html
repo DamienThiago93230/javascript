@@ -9,7 +9,7 @@
 <body>
     <form>
         <label>Pseudo</label>
-        <input type="text" name="pseudo" id="pseudo" class="focus">
+        <input id="pseudo" type="text" value="Vous n'avez pas le focus !" class="focus"/>
 
         <br>
 
@@ -21,8 +21,33 @@
     </form>
 
     <script>
-        // Exercice : Lorsque vous êtes en focus (= événement "focus") sur input, sa borure devient rouge. puis lorsque vous êtes en blur (= événement "blur") sur un input, sa bordure redevient normale. Utilisez addEventListerner.
-    </script>
+    // Exercice : Lorsque vous êtes en focus (= événement "focus") sur input, sa borure devient rouge. puis lorsque vous êtes en blur (= événement "blur") sur un input,sa bordure redevient normale. Utilisez addEventListerner.
+
+    var pseudo = document.getElementById('pseudo');
+    var mdp = document.getElementById('mdp');
+
+    pseudo.addEventListener('focus', function(e) {
+        e.target.value = "Vous avez le focus !";
+        e.target.style.border = '3px solid red';
+    });
+
+
+    pseudo.addEventListener('blur', function(e) {
+        e.target.value = "Vous n'avez pas le focus !";
+        e.target.style.border = '1px solid black';
+    });
+//-------------------------------------
+    mdp.addEventListener('focus', function(e) {
+        e.target.style.border = '3px solid red';
+    });
+
+
+    mdp.addEventListener('blur', function(e) {
+        e.target.style.border = '1px solid black';
+    });
+
+
+</script>
     
 </body>
 </html>
