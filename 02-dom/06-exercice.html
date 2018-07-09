@@ -23,28 +23,38 @@
     <script>
     // Exercice : Lorsque vous êtes en focus (= événement "focus") sur input, sa borure devient rouge. puis lorsque vous êtes en blur (= événement "blur") sur un input,sa bordure redevient normale. Utilisez addEventListerner.
 
-    var pseudo = document.getElementById('pseudo');
-    var mdp = document.getElementById('mdp');
+//     var pseudo = document.getElementById('pseudo');
+//     var mdp = document.getElementById('mdp');
+//     pseudo.addEventListener('focus', function(e) {
+//         e.target.value = "Vous avez le focus !";
+//         e.target.style.border = '3px solid red';
+//     });
+//     pseudo.addEventListener('blur', function(e) {
+//         e.target.value = "Vous n'avez pas le focus !";
+//         e.target.style.border = '';
+//     });
+// //-------------------------------------
+//     mdp.addEventListener('focus', function(e) {
+//         e.target.style.border = '3px solid red';
+//     });
+//     mdp.addEventListener('blur', function(e) {
+//         e.target.style.border = '';
+//     });
 
-    pseudo.addEventListener('focus', function(e) {
-        e.target.value = "Vous avez le focus !";
-        e.target.style.border = '3px solid red';
-    });
+//-----------Correction avec une boucle------------
+        
+        var inputs = document.querySelectorAll('.focus');
 
+        for ( var i = 0; i < inputs.length; i++){
+            inputs[i].addEventListener('focus', function(){
+                this.style.border = '2px solid red';
+            });
 
-    pseudo.addEventListener('blur', function(e) {
-        e.target.value = "Vous n'avez pas le focus !";
-        e.target.style.border = '1px solid black';
-    });
-//-------------------------------------
-    mdp.addEventListener('focus', function(e) {
-        e.target.style.border = '3px solid red';
-    });
+            inputs[i].addEventListener('blur', function(){
+                this.style.border ='';
+            });
+        }
 
-
-    mdp.addEventListener('blur', function(e) {
-        e.target.style.border = '1px solid black';
-    });
 
 
 </script>

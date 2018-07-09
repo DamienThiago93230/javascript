@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crée des éléments dynamiquement</title>
+    <style>
+        .jaune { background: yellow; width: 200px;}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <p><a href="#">Accueil</a></p>
+    </div>
+
+    <script>
+        // createElement, appenChild et removeChild :
+        // On va crée une balise <p> qui contient la déscription du lien "Accueil", l'accrocher dans le document HTML en tant qu'enfant de <.container>
+
+        var monP = document.createElement('p');  // je crée un élément <p>. monP est un objet qui représente cette balise crée
+
+        monP.className = 'jaune';  // Je lui attribut donc la classe "jaune" grâce à la propriété className. On peut aussi faire : 
+        monP.setAttribute('class', 'jaune');
+
+        monP.textContent = 'retour vers l\'accueil';  // textContent permet d'insérer du texte brut dans la balise <p>
+
+        document.querySelector('a').addEventListener('mouseover', function(){
+            document.querySelector('.container').appendChild(monP);  // Accroche l'objet <p> en tant qu'enfant de .container à la suite de la première balise <p>
+        });
+
+        document.querySelector('a').addEventListener('mouseout', function(){
+            document.querySelector('.container').removeChild(monP);  // décroche l'objet <p> enfant de .container
+        });
+
+          
+    
+    </script>
+    
+</body>
+</html>
