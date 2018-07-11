@@ -86,6 +86,101 @@ $(function(){ // Ce code s'exécutera une foi le document HTML totalement charge
         });
 
 
+        //---------------------------
+        // Le mot clè this :
+        // this est nécessaire lorsqu'on sélectionne plusieurs éléments simultanement et qu'on a besoin d'en cibler un en particulier
+        $('input').focus(function(){
+            $(this).css({ border : '2px solid green'}); // this se réfère à l'input sur lequel je suis en focus précisèment, sans sélectionner l'atutre
+        });
+
+        $('input').blur(function(){
+            $(this).css({ border : ''}); // Avec la méthode css() je remets la bordure à son état initial (correspondant au string vide '') de l'input duquel je viens de sortir (= this)
+        });
+
+        //----------------
+        // Accéder aux propriétés CSS avec la méthode css()  (complément) :
+        var position = $('#violet').css('position');
+
+        console.log('La propriété position du div est : '+ position); // La méthode css() avec seulement une propriété sous forme de string en argument est un getter : elle fournit la valeur de la propriété spécifiée, même si celle-ci n'est pas dans un attribut style (va chercher y compris dans les feuilles de styles)
+
+
+        //----------------
+        // Accéder aux attributs des balises avec attr() :
+        if($('.modifAlt').attr('alt') == '') { // attr() avec un seul argument est un getter : il permet de récupérer la valeur de l'attribut précisé (ici le alt)
+            $('.modifAlt').attr('alt', 'paysage'); // attr() avec deux argument est un setter : il permet d'attribuer une valeur à un attribut : attr('attribut', 'valeur').
+        }
+
+        //-----------------
+        // Modifier le contenu d'une balise avec text() ou html() :
+        // html() équivaut à innerHTML :
+        $('.texte').eq(0).html('<span>Ceci est un texte ajouté avec la méthode html()</span>'); // Les balises HTML sont interprétées et donc insérées dans le code HTML. La méthode eq() permet de cibler l'élément dont l'indice est spécifié dans les (), ici la première .texte
+
+        // text() équivaut à textContent :
+        $('.texte').eq(1).text('<span>Ceci est un texte ajouté avec la méthode text()</span>'); // Dans la méthode text() tout est considéré comme du texte brut, y compris les évebtuelles balises
+
+        // Note : text() et html() sans arument sont des getter : il récupèrent le contenu de la balise sélectionnée.
+
+        //----------------
+        // Ajouter ou retirer une classe (définie dans le CSS) à un élément :
+        $('#survol').mouseenter(function(){
+            $(this).addClass('rouge'); // Ici ajoute la classe 'rouge' (prévue dans le CSS) à l'élément
+        });
+
+        $('#survol').mouseleave(function(){ 
+            $(this).removeClass('rouge'); // Ici retire la classe 'rouge' à l'élément
+        });
+
+        $('#classBleu').click(function(){
+            $('#survol').toggleClass('bleu');  // alterne addClass() et removeClass sur l'élément #survol (différent du bouton #classBleu : on n'utilise donc pas $(this) !)
+        });
+
+        //--------------
+        // Parcourir les éléments sélectionnées avec une boucle each() :
+
+        $('h4').each(function(indice){ // each() parcour tous les <h4> et exécute la fonction pour chacun (= each) d'entre-eux. Cette fonction possède un paramètre (= indice) qui correspond à l'indice de l'élément sur lequel la boucle se trouve
+
+            $(this).text('Ce <h4> à pour indice le numéro ' + indice); // Ajoute le texte au <h4> sur lequel on se trouve précisément à chaque tour de boucle (= $(this))
+
+            // on ajoute la classe "rouge" aux h4 d'indice pair :
+            if( indice % 2 == 0) { // Signifie que l'indice est pair : on ajoute donc la classe "rouge" à chaque élélmentt d'indice paire
+                $(this).addClass('rouge');
+            }
+        });
+
+        //---------------
+        // Les speudo-sélecteurs spécifique à jQuery :first, :last, :visible et :hidden
+
+        // :visible et :hidden :
+        $('#afficher').click(function(){
+            $('#galerie img:hidden').css({ opacity : 0.2 }); // Sélectionne les images cachées et leur met une opacité de 0.2
+            $('#galerie img').show(); // Puis on affiche toutes les images (pour voir le résultat)
+        });
+
+        $('#effacer').click(function(){
+            $('#galerie img').hide(); 
+        });
+
+
+        // :first et :last :
+        $('#afficher-premier').click(function(){
+            $('#galerie img:first').show(); // Sélectionne la première image et l'affiche. Marche aussi avec :last pour la dernière. Si vous voulez cibler une image  au millieu, utilisez la méthode eq().
+
+            // On peut combiner les deux pseudo-selecteurs :
+            console.log($('#galerie img:hidden:first').attr('src') ); // On combine :hidden:first pour afficher la source de la première image cachée. Attention à l'ordre, :hidden d'abord puis :first
+        });
+
+
+        
+
+        
+
+        
+
+
+
+
+
+
 
 
 }); // Fin document ready (à ne pas supprimer)
