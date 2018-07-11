@@ -15,6 +15,7 @@
 			#portfolio img { width: 200px; height: 150px; }
 			.group { position: relative; overflow: hidden; }
 			.group p { position: absolute; bottom: 5px; left: -200px; color: #fff; background: #222; margin: 0; width: 200px; }
+			h3 {background: orange; width: 1200px; text-align: center; border: 10px groove black; }
 		</style>
 		<script src="jquery.js"></script>
 	</head>
@@ -76,10 +77,58 @@
 		</div>		
 
 		<script> 
+		// Exercice 1
 		$(function(){
 			$('#onglet1').click(function(){
-				$('#onglet1').show();
+				$('#contenu2').hide();
+				$('#contenu1').show();
 			});
+
+			$('#onglet2').click(function(){
+				$('#contenu1').hide();
+				$('#contenu2').show();
+			});
+
+		// Exercice 2
+		$('nav').hover(function(){
+			$('nav li').show();
+		    },function(){
+				$('nav li').hide();
+		});
+
+		// Exercice 3
+		$('#voirMdp').mousedown(function(){
+			$('#mdp').attr('type', 'text');
+		});
+
+		$('#voirMdp').mouseup(function(){
+			$('#mdp').attr('type', 'password');
+		});
+
+		// Exercice 4
+		$('.texte').on('click', function(){
+			$(this).toggleClass('red');
+		});
+		// Ou
+		$('.texte').click(function(){
+			$(this).toggleClass('red');
+		});
+
+		// Exercice 5
+		$('.group img').mouseover(function(){
+			$(this).css({
+				opacity : 0.5,
+				transition : 'opacity 0.5s' // Ici il s'agit d'une propriété CSS donc exprimée en secondes
+			});
+		});
+
+		$('.group img').mouseleave(function(){
+			$(this).css({
+				opacity : 1,
+			});
+		});
+
+
 			
 			
 
