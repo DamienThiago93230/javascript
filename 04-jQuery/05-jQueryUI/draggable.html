@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery UI - draggable</title>
+
+    <!-- 
+    jQuery UI pour "User Interface" est une bibliothéque qui complète jQuery avec un ensemble de méthodes additonnelles spécifique à l'utilisabilité du site (= interface utilisateur). Exemples : objets, accordéon, calendrier, drag & drop, ect.
+
+    Pour utiliser la bibliothéque jQuery UI, on charge d'abord jQuery, puis celle de jQuery UI :
+    -->
+
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+
+    <script
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous">
+    </script>
+
+<script>
+        $( function() {
+          $( ".myDiv" ).draggable();
+        } );
+        </script>
+
+
+    <style>
+        .myDiv {
+            width: 400px;
+            height: 400px;
+            background: navy;
+            color: white;
+            border-radius: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="myDiv">Ceci est le contenu</div>
+
+
+
+    <script>
+    
+    
+    </script>
+    
+</body>
+</html>
